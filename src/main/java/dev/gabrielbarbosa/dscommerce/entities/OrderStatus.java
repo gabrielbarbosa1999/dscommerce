@@ -1,4 +1,4 @@
-package dev.gabrielbarbosa.dscommerce.enums;
+package dev.gabrielbarbosa.dscommerce.entities;
 
 public enum OrderStatus {
 
