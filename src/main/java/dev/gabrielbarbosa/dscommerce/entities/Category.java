@@ -44,19 +44,16 @@ public class Category {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Category)) return false;
 
         Category category = (Category) o;
 
-        if (!Objects.equals(id, category.id)) return false;
-        return Objects.equals(name, category.name);
+        return getId() != null ? getId().equals(category.getId()) : category.getId() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+        return getId() != null ? getId().hashCode() : 0;
     }
 
 }

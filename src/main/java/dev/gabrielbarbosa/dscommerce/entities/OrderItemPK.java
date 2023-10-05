@@ -33,4 +33,22 @@ public class OrderItemPK {
         this.product = product;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OrderItemPK)) return false;
+
+        OrderItemPK that = (OrderItemPK) o;
+
+        if (getOrder() != null ? !getOrder().equals(that.getOrder()) : that.getOrder() != null) return false;
+        return getProduct() != null ? getProduct().equals(that.getProduct()) : that.getProduct() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getOrder() != null ? getOrder().hashCode() : 0;
+        result = 31 * result + (getProduct() != null ? getProduct().hashCode() : 0);
+        return result;
+    }
+
 }

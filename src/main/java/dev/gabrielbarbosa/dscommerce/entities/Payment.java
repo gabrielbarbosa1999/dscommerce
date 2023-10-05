@@ -50,21 +50,16 @@ public class Payment {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Payment)) return false;
 
         Payment payment = (Payment) o;
 
-        if (!Objects.equals(id, payment.id)) return false;
-        if (!Objects.equals(moment, payment.moment)) return false;
-        return Objects.equals(order, payment.order);
+        return getId() != null ? getId().equals(payment.getId()) : payment.getId() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (moment != null ? moment.hashCode() : 0);
-        result = 31 * result + (order != null ? order.hashCode() : 0);
-        return result;
+        return getId() != null ? getId().hashCode() : 0;
     }
 
 }

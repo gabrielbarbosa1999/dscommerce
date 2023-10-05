@@ -86,24 +86,16 @@ public class Order {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Order)) return false;
 
         Order order = (Order) o;
 
-        if (!Objects.equals(id, order.id)) return false;
-        if (!Objects.equals(moment, order.moment)) return false;
-        if (status != order.status) return false;
-        if (!Objects.equals(client, order.client)) return false;
-        return Objects.equals(payment, order.payment);
+        return getId() != null ? getId().equals(order.getId()) : order.getId() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (moment != null ? moment.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (client != null ? client.hashCode() : 0);
-        result = 31 * result + (payment != null ? payment.hashCode() : 0);
-        return result;
+        return getId() != null ? getId().hashCode() : 0;
     }
+
 }

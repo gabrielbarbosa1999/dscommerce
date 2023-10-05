@@ -51,4 +51,19 @@ public class OrderItem {
         this.price = price;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OrderItem)) return false;
+
+        OrderItem orderItem = (OrderItem) o;
+
+        return id != null ? id.equals(orderItem.id) : orderItem.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
 }
