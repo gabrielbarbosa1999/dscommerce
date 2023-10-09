@@ -43,4 +43,8 @@ public class ProductService {
         return new ProductDTO(product);
     }
 
+    public void delete(Long id) {
+        productRepository.deleteById(id);
+    }
+
 }
