@@ -1,12 +1,19 @@
 package dev.gabrielbarbosa.dscommerce.dto;
 
 import dev.gabrielbarbosa.dscommerce.entities.Product;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 public class ProductDTO {
 
     private Long id;
+    @NotBlank(message = "CAMPO REQUERIDO.")
+    @Size(min = 3, max = 80, message = "DIGITE ENTRE 3 E 80 CARACTERES.")
     private String name;
+    @Size(min = 10, message = "MINIMO DE CARACTERER 10.")
     private String description;
+    @Positive(message = "O PREÇO PRECISA SER POSITIVO.")
     private Double price;
     private String imgUrl;
 
