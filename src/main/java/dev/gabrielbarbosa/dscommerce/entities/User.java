@@ -1,12 +1,10 @@
 package dev.gabrielbarbosa.dscommerce.entities;
 
 import jakarta.persistence.*;
-import org.aspectj.weaver.ast.Or;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "tb_user")

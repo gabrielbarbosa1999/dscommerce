@@ -1,8 +1,6 @@
 package dev.gabrielbarbosa.dscommerce.controlers;
 
 import dev.gabrielbarbosa.dscommerce.dto.ProductDTO;
-import dev.gabrielbarbosa.dscommerce.entities.Product;
-import dev.gabrielbarbosa.dscommerce.repositories.ProductRepository;
 import dev.gabrielbarbosa.dscommerce.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/products")

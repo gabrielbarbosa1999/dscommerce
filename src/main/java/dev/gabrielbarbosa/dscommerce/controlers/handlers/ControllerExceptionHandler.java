@@ -1,11 +1,9 @@
 package dev.gabrielbarbosa.dscommerce.controlers.handlers;
 
 import dev.gabrielbarbosa.dscommerce.dto.CustomError;
-import dev.gabrielbarbosa.dscommerce.dto.FieldMessage;
 import dev.gabrielbarbosa.dscommerce.dto.ValidationError;
 import dev.gabrielbarbosa.dscommerce.services.exceptions.DatabaseException;
 import dev.gabrielbarbosa.dscommerce.services.exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.lang.reflect.Field;
 import java.time.Instant;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
