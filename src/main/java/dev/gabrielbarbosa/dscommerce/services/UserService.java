@@ -1,14 +1,19 @@
 package dev.gabrielbarbosa.dscommerce.services;
 
+import dev.gabrielbarbosa.dscommerce.dto.UserDTO;
 import dev.gabrielbarbosa.dscommerce.entities.Role;
 import dev.gabrielbarbosa.dscommerce.entities.User;
 import dev.gabrielbarbosa.dscommerce.projections.UserDetailsProjection;
 import dev.gabrielbarbosa.dscommerce.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,4 +40,19 @@ public class UserService implements UserDetailsService {
 
         return user;
     }
+
+    protected User authenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        return repository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Email not found"));
+    }
+
+    @Transactional(readOnly = true)
+    public UserDTO getMe() {
+        User user = authenticated();
+        return new UserDTO(user);
+    }
+
+
 }
