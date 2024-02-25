@@ -1,7 +1,7 @@
 package dev.gabrielbarbosa.dscommerce.entities;
 
-import org.springframework.security.core.GrantedAuthority;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "tb_role")
