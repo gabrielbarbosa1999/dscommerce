@@ -1,10 +1,7 @@
 package dev.gabrielbarbosa.dscommerce.dto;
 
 import dev.gabrielbarbosa.dscommerce.entities.Product;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +15,7 @@ public class ProductDTO {
     private String name;
     @Size(min = 10, message = "MINIMO DE CARACTERER 10.")
     private String description;
+    @NotNull(message = "CAMPO REQUERIDO.")
     @Positive(message = "O PREÇO PRECISA SER POSITIVO.")
     private Double price;
     private String imgUrl;
