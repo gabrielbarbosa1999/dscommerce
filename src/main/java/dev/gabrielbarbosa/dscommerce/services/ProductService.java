@@ -2,6 +2,7 @@ package dev.gabrielbarbosa.dscommerce.services;
 
 import dev.gabrielbarbosa.dscommerce.dto.ProductDTO;
 import dev.gabrielbarbosa.dscommerce.dto.ProductMinDTO;
+import dev.gabrielbarbosa.dscommerce.entities.Category;
 import dev.gabrielbarbosa.dscommerce.entities.Product;
 import dev.gabrielbarbosa.dscommerce.repositories.ProductRepository;
 import dev.gabrielbarbosa.dscommerce.services.exceptions.DatabaseException;
@@ -14,6 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -38,6 +42,12 @@ public class ProductService {
     @Transactional
     public ProductDTO insert(ProductDTO productDTO) {
         Product product = productRepository.save(new Product(productDTO));
+        List<Category> categories = productDTO.getCategories().stream().map(categoryId -> {
+            Category category = new Category();
+            category.setId(categoryId.getId());
+            return category;
+        }).toList();
+        product.addCategories(categories);
         return new ProductDTO(product);
     }
 
@@ -45,6 +55,12 @@ public class ProductService {
     public ProductDTO update(Long id, ProductDTO productDTO) {
         try {
             Product product = productRepository.getReferenceById(id);
+            List<Category> categories = productDTO.getCategories().stream().map(categoryId -> {
+                Category category = new Category();
+                category.setId(categoryId.getId());
+                return category;
+            }).toList();
+            product.addCategories(categories);
             product.update(productDTO);
             return new ProductDTO(product);
         } catch (EntityNotFoundException e) {

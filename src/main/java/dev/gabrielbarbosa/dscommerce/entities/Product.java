@@ -105,6 +105,11 @@ public class Product {
         return items.stream().map(x -> x.getOrder()).toList();
     }
 
+    public void addCategories(List<Category> categories) {
+        this.categories.clear();
+        this.categories.addAll(categories);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
